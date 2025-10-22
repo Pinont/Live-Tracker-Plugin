@@ -1,7 +1,17 @@
-name: SingularityPlugin
+name: LiveTracker
 version: '1.0-SNAPSHOT'
-main: com.example.SingularityPlugin
+main: com.github.pinont.Core
 api-version: '1.21'
-prefix: Singularity
+prefix: LIVE
 load: STARTUP
-description: A plugin template for MC Plugin development with SingularityLib
+description: A Singularity plugin that tracks streaming status.
+softdepend:
+  - PlaceholderAPI
+
+permissions:
+  livetracker.commands.admin:
+    description: Allows use of LiveTracker admin commands.
+  livetracker.status.live:
+    description: Status that shows the player is live.
+  livetracker.status.offline:
+    description: Status that shows the player is offline.

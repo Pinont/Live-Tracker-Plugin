@@ -1,0 +1,45 @@
+package com.github.pinont;
+
+import com.github.pinont.live.LiveChecker;
+import com.github.pinont.live.Livestream;
+import com.github.pinont.singularitylib.api.manager.ConfigManager;
+import com.github.pinont.singularitylib.plugin.CorePlugin;
+import org.bukkit.Bukkit;
+import org.bukkit.command.CommandSender;
+import org.bukkit.scheduler.BukkitScheduler;
+
+public final class Core extends CorePlugin {
+
+    // MAIN INSTANCES
+    public static ConfigManager CONFIG_MANAGER;
+    public static BukkitScheduler SCHEDULER;
+
+    // LIVE TRACKER INSTANCES
+    public static Livestream LIVESTREAM;
+    public static LiveChecker LIVECHECKER;
+
+    // UNIVERSAL RELOAD METHOD
+    public void reload(CommandSender sender) {
+        CONFIG_MANAGER = new ConfigManager("config.yml");
+        LIVESTREAM.loadPrefix();
+        LIVECHECKER.reload(sender);
+    }
+
+    @Override
+    public void onPluginStart() {
+        // INIT
+        CONFIG_MANAGER = new ConfigManager("config.yml");
+        SCHEDULER = Bukkit.getScheduler();
+        LIVESTREAM = new Livestream();
+        LIVECHECKER = new LiveChecker();
+
+        // LOAD
+        LIVESTREAM.loadPrefix();
+        LIVECHECKER.start();
+    }
+
+    @Override
+    public void onPluginStop() {
+
+    }
+}
