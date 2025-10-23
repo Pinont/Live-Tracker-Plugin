@@ -143,7 +143,7 @@ public class Livestream {
             player.playerListName(new Common().colorize(newName));
             return;
         }
-        if (newName.equals(player.getName())) {
+        if (!newName.equals(player.getName())) {
             player.displayName(new Common().colorize(player.getName()));
             player.playerListName(new Common().colorize(player.getName()));
         }

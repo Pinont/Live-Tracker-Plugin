@@ -5,8 +5,7 @@ api-version: '1.21'
 prefix: LIVE
 load: STARTUP
 description: A Singularity plugin that tracks streaming status.
-softdepend:
-  - PlaceholderAPI
+folia-supported: true
 
 permissions:
   livetracker.commands.admin:
