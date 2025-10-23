@@ -8,6 +8,7 @@ A minecraft Paper plugin that tracks and displays player stream status via Playe
 # only for developers
 debug: false
 # Prefix to show on PlayerList for live streams who's streaming
+# hint: follow color formatting in https://docs.papermc.io/adventure/minimessage/
 yt_live_prefix: '<red>[LIVE] </red><reset>'
 tw_live_prefix: '<red>[LIVE] </red><reset>'
 tt_live_prefix: '<red>[LIVE] </red><reset>'

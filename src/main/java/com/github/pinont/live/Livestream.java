@@ -121,6 +121,7 @@ public class Livestream {
         ytPrefix = configManager.getConfig().getString("yt_live_prefix");
         if (ytPrefix == null || ytPrefix.isEmpty()) {
             configManager.set("yt_live_prefix", defaultPrefix);
+            configManager.getConfig().setComments("yt_live_prefix", List.of("Prefix to show on PlayerList for live streams who's streaming", "hint: follow color formatting in https://docs.papermc.io/adventure/minimessage/"));
             configManager.saveConfig();
             ytPrefix = configManager.getConfig().getString("yt_live_prefix");
         }
