@@ -1,9 +1,9 @@
 # LiveTracker Plugin
-![](https://img.shields.io/badge/folia_support-true-blue) ![](https://img.shields.io/badge/paperapi_version-1.21.8+-green) ![](https://img.shields.io/badge/singularityapi_version-55b1c7ed4d-purple)
+![](https://img.shields.io/badge/folia_support-1.21.8+-blue) ![](https://img.shields.io/badge/paperapi_version-1.21.8+-green) [![](https://img.shields.io/badge/singularityapi_version-55b1c7ed4d-purple)](https://github.com/Pinont/SingularityLib)
 
 A minecraft Paper plugin that tracks and displays player stream status via PlayerTabList, supporting Twitch, YouTube, and TikTok.
 
-## Configuration
+## Config.yml Exmaple
 ```yaml
 # only for developers
 debug: false
