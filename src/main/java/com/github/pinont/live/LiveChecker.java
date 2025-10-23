@@ -3,18 +3,12 @@ package com.github.pinont.live;
 import com.github.pinont.Core;
 import com.github.pinont.singularitylib.api.manager.ConfigManager;
 import com.github.pinont.singularitylib.api.runnable.Scheduler;
-import com.github.pinont.singularitylib.api.utils.Common;
-import com.github.pinont.singularitylib.api.utils.Console;
-import io.papermc.paper.threadedregions.scheduler.AsyncScheduler;
-import io.papermc.paper.threadedregions.scheduler.ScheduledTask;
 import org.bukkit.Bukkit;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
-import org.bukkit.scheduler.BukkitScheduler;
 
 import java.util.Collections;
 import java.util.concurrent.TimeUnit;
-import java.util.function.Consumer;
 
 public class LiveChecker {
 

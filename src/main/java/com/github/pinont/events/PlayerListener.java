@@ -4,7 +4,6 @@ import com.github.pinont.Core;
 import com.github.pinont.live.Livestream;
 import com.github.pinont.live.Platform;
 import com.github.pinont.singularitylib.api.annotation.AutoRegister;
-import com.github.pinont.singularitylib.api.utils.Console;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;

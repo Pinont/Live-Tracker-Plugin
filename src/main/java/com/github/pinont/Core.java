@@ -5,12 +5,7 @@ import com.github.pinont.live.Livestream;
 import com.github.pinont.singularitylib.api.manager.ConfigManager;
 import com.github.pinont.singularitylib.api.runnable.Scheduler;
 import com.github.pinont.singularitylib.plugin.CorePlugin;
-import io.papermc.paper.threadedregions.scheduler.AsyncScheduler;
-import org.bukkit.Bukkit;
 import org.bukkit.command.CommandSender;
-import org.bukkit.scheduler.BukkitScheduler;
-
-import static org.bukkit.Bukkit.getAsyncScheduler;
 
 public final class Core extends CorePlugin {
 

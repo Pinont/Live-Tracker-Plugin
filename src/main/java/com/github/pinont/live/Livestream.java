@@ -9,6 +9,8 @@ import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
 
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
 
 public class Livestream {
 
@@ -16,6 +18,7 @@ public class Livestream {
     private String twitchPrefix;
     private String tiktokPrefix;
     private ConfigManager configManager = Core.CONFIG_MANAGER;
+    private static final List<String> errorList = new ArrayList<>();
 
     public boolean isYoutubeLive(String channelName) {
         String url = "https://www.youtube.com/@" + channelName + "/live";
@@ -33,6 +36,7 @@ public class Livestream {
             }
 
         } catch (IOException e) {
+            errorList.add(channelName);
             Console.logError("Error checking channel: " + e.getMessage());
         }
         return false;
@@ -52,6 +56,7 @@ public class Livestream {
                 return true;
             }
         } catch (IOException e) {
+            errorList.add(channelName);
             Console.logError("Error checking Twitch channel: " + e.getMessage());
         }
         return false;
@@ -73,6 +78,7 @@ public class Livestream {
                 return true;
             }
         } catch (IOException e) {
+            errorList.add(username);
             Console.logError("Error checking TikTok user: " + e.getMessage());
         }
 
@@ -80,10 +86,12 @@ public class Livestream {
     }
 
     public boolean isLive(String channelName, Platform platform) {
+        errorList.remove(channelName);
         return switch (platform) {
             case YOUTUBE -> isYoutubeLive(channelName);
             case TWITCH -> isTwitchLive(channelName);
             case TIKTOK -> isTikTokLive(channelName);
+            case null -> false;
         };
     }
 
@@ -138,6 +146,8 @@ public class Livestream {
             case TIKTOK -> tiktokPrefix;
             case null -> "";
         };
+        if (errorList.contains(getChannelName(player))) return; // skip if there was an error checking
+
         String newName = finalLivePrefix + player.getName();
 
         if (!newName.equals(player.getName())) {
