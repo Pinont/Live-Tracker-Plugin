@@ -26,6 +26,7 @@ public final class Core extends CorePlugin {
 
     // UNIVERSAL RELOAD METHOD
     public void reload(CommandSender sender) {
+        CONFIG_MANAGER.reloadConfig();
         CONFIG_MANAGER = new ConfigManager("config.yml");
         LIVESTREAM.loadPrefix();
         LIVECHECKER.reload(sender);

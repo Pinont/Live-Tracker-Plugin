@@ -1,0 +1,53 @@
+name: Build and upload artifact
+
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
+  workflow_dispatch:
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Set up Java (Temurin)
+        uses: actions/setup-java@v4
+        with:
+          distribution: temurin
+          java-version: '17'
+          cache: maven
+
+      - name: Build with Maven
+        run: mvn -B -V -DskipTests package
+
+      - name: Find built jar (exclude original-*)
+        id: find-jar
+        run: |
+          echo "Looking for jars in target/"
+          JAR=$(find target -maxdepth 1 -type f -name '*.jar' ! -name 'original-*' | head -n1)
+          if [ -z "$JAR" ]; then
+            echo "No jar found (excluding original-*.jar). Listing target/ for debug:" >&2
+            ls -la target || true
+            exit 1
+          fi
+          echo "Found jar: $JAR"
+          echo "DESIRED_JAR=$JAR" >> $GITHUB_ENV
+
+      - name: Prepare artifact (copy chosen jar to artifact/)
+        run: |
+          set -e
+          mkdir -p artifact
+          BASENAME=$(basename "$DESIRED_JAR")
+          cp "$DESIRED_JAR" "artifact/$BASENAME"
+          echo "ARTIFACT_PATH=artifact/$BASENAME" >> $GITHUB_ENV
+
+      - name: Upload build artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: build-artifact
+          path: ${{ env.ARTIFACT_PATH }}
