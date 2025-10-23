@@ -136,14 +136,16 @@ public class Livestream {
             case YOUTUBE -> ytPrefix;
             case TWITCH -> twitchPrefix;
             case TIKTOK -> tiktokPrefix;
+            case null -> "";
         };
         String newName = finalLivePrefix + player.getName();
-        if (isLive) {
-            player.displayName(new Common().colorize(newName));
-            player.playerListName(new Common().colorize(newName));
-            return;
-        }
+
         if (!newName.equals(player.getName())) {
+            if (isLive) {
+                player.displayName(new Common().colorize(newName));
+                player.playerListName(new Common().colorize(newName));
+                return;
+            }
             player.displayName(new Common().colorize(player.getName()));
             player.playerListName(new Common().colorize(player.getName()));
         }

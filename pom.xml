@@ -13,7 +13,7 @@
 
     <properties>
         <paperapi.version>1.21.8-R0.1-SNAPSHOT</paperapi.version>
-        <singularity.version>1.0.0</singularity.version>
+        <singularity.version>55b1c7ed4d</singularity.version>
         <java.version>23</java.version>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     </properties>

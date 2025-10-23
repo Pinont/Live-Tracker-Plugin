@@ -21,9 +21,7 @@ public class PlayerListener implements Listener {
         String channelName = livestream.getChannelName(player);
         Platform platform = livestream.getPlatform(player);
         if (platform == null) {
-            Console.logError("Platform for player " + player.getName() + " is invalid. Please set it to YOUTUBE/YT TWITCH/TW or TIKTOK/TT");
-            return;
-        } else if (channelName.isEmpty()) {
+            livestream.setLiveDisplayName(player, false);
             return;
         }
         livestream.setLiveDisplayName(player, livestream.isLive(channelName, platform));
